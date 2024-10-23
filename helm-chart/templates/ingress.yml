@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: taskmaster-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"  
+spec:
+  rules:
+  - host: https://5E0747CAB55577A6C80760B08BC3389C.gr7.ap-south-2.eks.amazonaws.com 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: taskmaster-ssvc  
+            port:
+              number: 80
